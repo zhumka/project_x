@@ -4,11 +4,11 @@ from io import BytesIO
 import webbrowser
 from telebot import types
 
-bot = telebot.TeleBot('6660421105:AAEfzMeeNFuhbBqlC3owW9mzcY7s906oHJ4')
+bot = telebot.TeleBot('7209705890:AAGtnFSgIGVuzs8teT-yMad0bI4PylfRgq0')
 
 
 def handle_start(message):
-    response = requests.get('http://35.198.134.123/api/v1/apartment/', json=True)
+    response = requests.get('http://127.0.0.1:8000/api/v1/apartment/', json=True)
     if response.status_code == 200:
         bot_messages = response.json()
         if bot_messages is not None:
@@ -48,13 +48,13 @@ def handle_start(message):
 
 def conn(message):
     bot.send_message(message.chat.id, "номера для обратной связи \n "
-                                      "+996 999 999 999\n "
-                                      "+996 777 777 777\n ")
+                                      "+996 707 009 522\n "
+                                      "+996 223 232 758\n ")
 
 
 def location(message):
     bot.send_message(message.chat.id,
-                     "Купить номера или заброннировать можете на нашем сайте http://35.198.134.123/api/v1/apartment/")
+                     "Купить номера или заброннировать можете на нашем сайте http://127.0.0.1:8000/api/v1/apartment/")
 
 
 @bot.message_handler(commands=['reserv'])
@@ -84,7 +84,7 @@ def go_to_location(call):
 
 @bot.message_handler(commands=['site', 'website'])
 def site(message):
-    webbrowser.open('http://35.198.134.123/api/v1/apartment/')
+    webbrowser.open('http://127.0.0.1:8000/api/v1/apartment/')
 
 
 @bot.callback_query_handler(func=lambda call: call.data == 'conn')
@@ -103,7 +103,7 @@ def send_hello(message):
 
 @bot.message_handler(commands=['site', 'website'])
 def site(message):
-    bot.send_message(message.chat.id, 'Вот ссылка на сайт: http://35.198.134.123/api/v1/apartment/')
+    bot.send_message(message.chat.id, 'Вот ссылка на сайт: http://127.0.0.1:8000/api/v1/apartment/')
 
 
 @bot.message_handler(commands=['start', 'restart'])
