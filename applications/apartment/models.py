@@ -9,7 +9,7 @@ class Category(models.Model):
     """
         Модель категории
     """
-    name = models.SlugField(primary_key=True, unique=True, max_length=50)
+    name = models.CharField(primary_key=True, unique=True, max_length=50)
 
     def __str__(self):
         return self.name

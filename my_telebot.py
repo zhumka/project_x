@@ -116,7 +116,7 @@ def start_command(message):
     item5 = types.KeyboardButton('start')
     markup.add(item1, item2, item3, item4, item5)
 
-    sticker_id1 = 'CAACAgIAAxkBAAEKgJllJp7EULlNSTCQlTttSkEXCbiNkgAC2wADB5LXMPpDqqzQOIfGMAQ'
+    sticker_id1 = 'CAACAgIAAxkBAAEMP51mYYxLlgUrBUpskVutQzJgmXhpWwACEhgAAhAemUi_BAQfVRhL4TUE'
     bot.send_sticker(message.chat.id, sticker_id1)
 
     bot.send_message(message.chat.id, 'Привет, {0.first_name}!'.format(message.from_user), reply_markup=markup)

@@ -10,7 +10,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 django.setup()
 from applications.pars_curens.models import DollarRate
 
-connect = psycopg2.connect(database='samirkk', user='postgres', host='localhost', password=1)
+connect = psycopg2.connect(database='parser', user='postgres', host='localhost', password=1)
 cursor = connect.cursor()
 
 

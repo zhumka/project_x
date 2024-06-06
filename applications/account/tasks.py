@@ -6,7 +6,7 @@ from config.celery import app
 def send_test_message():
 
     send_mail(
-        'Samirkk',
+        'Nedvizhimost',
         f'Это Тестовое сообщение',
         'iptest228228@gmail.com',
         ['iptest228228@gmail.com']

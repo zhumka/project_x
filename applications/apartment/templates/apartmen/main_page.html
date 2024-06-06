@@ -1,0 +1,59 @@
+<!-- applications/mainpage/templates/mainpage/main.html -->
+
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+     <link rel="stylesheet" href="{% static 'apartment/css/main_page.css' %}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="/">
+                <img src="{% static 'apartment/img/logo_3.png' %}" alt="Logo" width="40" height="40">
+            </a>
+        </div>
+        <div class="profile-button">
+            <button class="profile-button" onclick="window.location.href='/profile/'">
+                <img src="{% static 'apartment/img/icon-profile.png' %}" alt="Иконка профиля">
+                <span>Личный кабинет</span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+    <section class="apartments">
+        <h2>Available Apartments</h2>
+        <div class="apartment-list">
+            {% for apartment in apartments %}
+                <div class="apartment-card">
+                    <h3>{{ apartment.title }}</h3>
+                    <p>Location: {{ apartment.location }}</p>
+                    <p>Price: {{ apartment.price }} сом</p>
+                    <p>Price in Dollars: {{ apartment.price_dollar }} $</p>
+                    <p>Description: {{ apartment.description }}</p>
+                    <a href="{% url 'apartment_detail' apartment.id %}">View Details</a>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+</main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="contact-info">
+    <p>Contact us:</p>
+    <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/your_number" target="_blank">WhatsApp</a></p>
+    <p><i class="fab fa-instagram"></i> <a href="https://instagram.com/your_profile" target="_blank">Instagram</a></p>
+    <p><i class="far fa-envelope"></i> <a href="mailto:your_email@example.com">Email</a></p>
+    <p><i class="fab fa-telegram-plane"></i> <a href="https://t.me/whyupepe" target="_blank">Telegram</a></p>
+            </div>
+            <div class="footer-text">
+                <p>© 2024, «Nedvizhimost»™. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
