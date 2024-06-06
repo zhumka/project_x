@@ -22,6 +22,18 @@ from django.utils import translation
 
 logger = logging.getLogger(__name__)
 
+from django.shortcuts import render
+def main_page(request):
+    apartments = Apartment.objects.all()
+    return render(request, 'apartmen/main_page.html', {'apartments': apartments})
+
+# applications/apartment/views.py
+
+def apartment_detail(request, pk):
+    apartment = Apartment.objects.get(pk=pk)
+    return render(request, 'apartment/detail.html', {'apartment': apartment})
+
+
 
 class CategoryModelViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()

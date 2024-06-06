@@ -1,7 +1,0 @@
-INFO --- 2023-10-05 17:29:07,560 --- autoreload --- Watching for file changes with StatReloader
-INFO --- 2023-10-05 17:30:30,469 --- autoreload --- Watching for file changes with StatReloader
-INFO --- 2023-10-05 17:30:58,263 --- autoreload --- Watching for file changes with StatReloader
-INFO --- 2023-10-05 17:32:40,930 --- autoreload --- Watching for file changes with StatReloader
-INFO --- 2023-10-05 17:40:24,356 --- autoreload --- /home/user/final_hakaton/samirkk/applications/apartment/views.py changed, reloading.
-INFO --- 2023-10-05 17:40:28,237 --- autoreload --- Watching for file changes with StatReloader
-INFO --- 2023-10-05 17:41:31,620 --- autoreload --- /home/user/final_hakaton/samirkk/applications/apartment/views.py changed, reloading.

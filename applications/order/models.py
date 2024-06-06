@@ -38,7 +38,7 @@ class Order(models.Model):
 
     def __str__(self):
         return (f"Order for "
-                f"{self.owner.username}, "
+                f"{self.user.username}, "
                 f"{self.start_date}, "
                 f"{self.end_date}, "
                 f"{self.street}, "

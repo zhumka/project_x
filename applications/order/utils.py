@@ -3,10 +3,10 @@ from django.core.mail import send_mail
 
 def send_order_email(email, code, name):
     send_mail(
-        'Samirkk',
+        'Nedvizhimost',
         f'Привет, перейди по этому пути что бы подвердить покупку: '
-        f' \n\n https://sss.samirkk.com/api/v1/order/activate/{code}',
-        'sassassas107@gmail.com',
+        f' \n\n http://127.0.0.1:8000/api/v1/order/activate/{code}',
+        'iptest228228@gmail.com',
         [email]
     )
 

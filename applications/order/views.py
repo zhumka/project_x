@@ -74,7 +74,7 @@ class OrderActivationAPIView(APIView):
         if order.is_active:
             img_url = os.path.join(settings.MEDIA_URL, f'qrcodes/order_{order.id}.png')
 
-            full_img_url = f'http://35.198.109.24{img_url}'
+            full_img_url = f'http://127.0.0.1:8000{img_url}'
             return Response({'message': 'Заказ уже был подтвержден', 'qr_code_image_url': full_img_url}, status=status.HTTP_400_BAD_REQUEST)
 
         if order.user == request.user:
@@ -130,7 +130,7 @@ class OrderActivationAPIView(APIView):
 
         img_url = os.path.join(settings.MEDIA_URL, f'qrcodes/order_{order.id}.png')
 
-        full_img_url = f'http://35.198.109.24{img_url}'
+        full_img_url = f'http://127.0.0.1:8000{img_url}'
 
         response_data = {
             'message': 'Успешно, Вы подтвердили покупку',
