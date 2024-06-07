@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractUser, UserManager
 from django.contrib.auth.hashers import make_password
 from django.db import models
-
+from django.contrib.auth import get_user_model
 
 class CustomUserManager(UserManager):
     """
@@ -52,6 +52,7 @@ class CustomUser(AbstractUser):
     username = None
     is_active = models.BooleanField(default=False)
     is_owner = models.BooleanField(default=False)
+
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []

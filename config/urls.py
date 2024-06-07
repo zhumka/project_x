@@ -45,8 +45,9 @@ schema_view = get_schema_view(
 
 
 urlpatterns = [
-    path('', include('applications.apartment.urls')),
     path('admin/', admin.site.urls),
+    path('', include('applications.apartment.urls')),
+    path('apartment/', include('applications.apartment.urls')),  # Приложение apartment
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('api/v1/account/', include('applications.account.urls')),
     path('api/v1/apartment/', include('applications.apartment.urls')),
@@ -55,3 +56,4 @@ urlpatterns = [
     path('api/v1/help-center/', include('applications.helpcenter.urls')),
     path('api/v1/giftcard/', include('applications.giftcard.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
