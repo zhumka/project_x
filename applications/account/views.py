@@ -15,6 +15,27 @@ from rest_framework import status
 
 User = get_user_model()
 
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login, authenticate
+from django.contrib import messages
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            messages.success(request, f'Your account has been created! You are now logged in as {username}')
+            return redirect('home')
+    else:
+        form = UserCreationForm()
+    return render(request, 'apartmen/register.html', {'form': form})
+
+
 
 class RegisterAPIView(APIView):
     def post(self, request):
@@ -89,7 +110,7 @@ class OwnerUserApartmentAPIView(APIView):
             return Response({'message': 'Поздравляю Вы теперь являетесь Хозяином!'}, status=status.HTTP_200_OK)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        
+
 
 class UserInfoAPIView(generics.RetrieveAPIView):
     permission_classes = [IsAuthenticated]
@@ -103,7 +124,7 @@ class UserInfoAPIView(generics.RetrieveAPIView):
         instance = self.get_object()
         serializer = self.get_serializer(instance)
         return Response(serializer.data)
-    
+
 class OwnerApartmentInfoByEmailView(generics.RetrieveAPIView):
     serializer_class = OwnerApartmentProfileSerializer
 
@@ -116,4 +137,4 @@ class OwnerApartmentInfoByEmailView(generics.RetrieveAPIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
         except User.DoesNotExist:
             return Response({'detail': 'Владелец квартиры с указанным email не найден.'}, status=status.HTTP_404_NOT_FOUND)
-        
+

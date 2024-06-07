@@ -154,3 +154,78 @@ def informate(message):
 
 if __name__ == "__main__":
     bot.polling(none_stop=True)
+
+
+
+# import types
+#
+# import telebot
+# import requests
+# from io import BytesIO
+#
+# bot = telebot.TeleBot('7209705890:AAGtnFSgIGVuzs8teT-yMad0bI4PylfRgq0')
+#
+# @bot.message_handler(commands=['start'])
+# def handle_start(message):
+#     response = requests.get('http://127.0.0.1:8000/api/v1/apartment/', json=True)
+#     if response.status_code == 200:
+#         bot_messages = response.json()
+#         if bot_messages is not None:
+#             for bot_message in bot_messages['results']:
+#                 title = bot_message.get('title', 'Заголовок не найден')
+#                 price = bot_message.get('price', 'Цена не найдена')
+#                 description = bot_message.get('description', 'Описание не найдено')
+#                 location = bot_message.get('location', 'Локация не найдена')
+#                 education = bot_message.get('education', 'Образование не найдено')
+#                 like = bot_message.get('like_count', 'Лайки не найдены')
+#                 images = bot_message.get('images', [])
+#
+#                 if images:
+#                     image_url = images[0].get('image', 'Изображение не найдено')
+#                 else:
+#                     image_url = 'Изображение не найдено'
+#
+#                 # Загрузите изображение по URL
+#                 image_response = requests.get(image_url)
+#                 if image_response.status_code == 200:
+#                     image_bytes = BytesIO(image_response.content)
+#
+#                     # Отправьте изображение вместе с текстом
+#                     bot.send_photo(message.chat.id, image_bytes, caption=f"Название: {title}\n"
+#                                                                          f"Цена:  {price} сом \n"
+#                                                                          f"Апартаменты: {description}\n"
+#                                                                          f"Локация: {location}\n"
+#                                                                          f"Образование: {education}\n"
+#                                                                          f"Лайки: {like}")
+#                 else:
+#                     bot.send_message(message.chat.id, 'Не удалось загрузить изображение.')
+#         else:
+#             bot.send_message(message.chat.id, 'Данные отсутствуют.')
+#     else:
+#         bot.send_message(message.chat.id, 'Не удалось получить данные.')
+#
+# @bot.message_handler(commands=['contact'])
+# def conn(message):
+#     bot.send_message(message.chat.id, "номера для обратной связи \n "
+#                                       "+996 707 009 522\n "
+#                                       "+996 223 232 758\n ")
+#
+# @bot.message_handler(commands=['location'])
+# def location(message):
+#     bot.send_message(message.chat.id,
+#                      "Купить номера или заброннировать можете на нашем сайте http://127.0.0.1:8000/api/v1/apartment/")
+#
+# @bot.message_handler(commands=['site'])
+# def site(message):
+#     bot.send_message(message.chat.id, 'Вот ссылка на сайт: http://127.0.0.1:8000/api/v1/apartment/')
+#
+# @bot.message_handler(commands=['info'])
+# def send_hello(message):
+#     markup = types.InlineKeyboardMarkup(row_width=4)
+#     markup.add(types.InlineKeyboardButton('Адресс', callback_data='location'))
+#     markup.add(types.InlineKeyboardButton('Обратная связь', callback_data='conn'))
+#     markup.add(types.InlineKeyboardButton('Прасмотр номеров', callback_data='handle_start'))
+#     bot.send_message(message.chat.id, 'Приветствую', reply_markup=markup)
+#
+# if __name__ == "__main__":
+#     bot.polling(none_stop=True)

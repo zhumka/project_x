@@ -18,6 +18,7 @@ urlpatterns = [
     path('recommendations/', views.ApartmentAPIVIew.as_view({'get': 'get_recommendations'}),
          name='apartment-recommendations'),
     path('<int:pk>/', views.apartment_detail, name='apartment_detail'),
+    path('apartment/<int:pk>/', views.apartment_detail, name='apartment_detail')
 ]
 
 urlpatterns += router.urls

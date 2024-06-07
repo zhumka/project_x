@@ -27,12 +27,18 @@ def main_page(request):
     apartments = Apartment.objects.all()
     return render(request, 'apartmen/main_page.html', {'apartments': apartments})
 
+from django.shortcuts import render, get_object_or_404
+def apartment_detail(request, pk):
+    apartment = get_object_or_404(Apartment, pk=pk)
+    return render(request, 'apartmen/apartment_detail.html', {'apartment': apartment})
+
 # applications/apartment/views.py
 
-def apartment_detail(request, pk):
-    apartment = Apartment.objects.get(pk=pk)
-    return render(request, 'apartment/detail.html', {'apartment': apartment})
 
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login, authenticate
+from django.contrib import messages
 
 
 class CategoryModelViewSet(viewsets.ModelViewSet):
