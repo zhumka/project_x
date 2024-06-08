@@ -69,6 +69,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware'
 ]
+LOGIN_REDIRECT_URL = "/api/v1/account/profile/"
 
 ROOT_URLCONF = 'config.urls'
 

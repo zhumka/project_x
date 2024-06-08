@@ -8,6 +8,9 @@ from rest_framework_simplejwt.views import (
 )
 
 urlpatterns = [
+    path('accounts/profile/', profile_view, name='profile'),
+    path('profile/', profile_view, name='profile'),
+    path('profile/update/', profile_update_view, name='profile_update'),
     path('login/', auth_views.LoginView.as_view(template_name='apartmen/login.html'), name='login'),
     # path('login/', TokenObtainPairView.as_view()),
     path('refresh/', TokenRefreshView.as_view()),
@@ -18,7 +21,8 @@ urlpatterns = [
     path('user-info/', UserInfoAPIView.as_view(), name='user-info'),
     path('activate/<uuid:activation_code>/', ActivationAPIView.as_view()),
     path('change_password/', ChangePasswordAPIView.as_view()),
-    path('forgot_password/', ForgotPasswordAPIView.as_view()),
+    # path('forgot_password/', ForgotPasswordAPIView.as_view()),
+    path('forgot_password/', ForgotPasswordAPIView.as_view(), name='forgot_password'),
     path('forgot_password_confirm/', ForgotPasswordConfirmAPIView.as_view()),
     path('owner-apartment/', views.OwnerUserApartmentAPIView.as_view(), name='owner_apartment'),
     path('owner_apartment_info/<str:email>/', OwnerApartmentInfoByEmailView.as_view(), name='owner_apartment_info_by_email'),

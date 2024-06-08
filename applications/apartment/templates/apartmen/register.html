@@ -14,8 +14,6 @@
     <h2>Регистрация</h2>
     <form method="post" class="register-form">
         {% csrf_token %}
-        <label for="username">Имя пользователя:</label><br>
-        <input type="text" id="username" name="username" required><br>
         <label for="email">Email:</label><br>
         <input type="email" id="email" name="email" required><br>
         <label for="password">Пароль:</label><br>
@@ -32,3 +30,4 @@
 
 </body>
 </html>
+

@@ -13,27 +13,86 @@ from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework import status
 
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseForbidden
+from .models import CustomUser
+
 User = get_user_model()
 
+from django.contrib.auth import login
+from django.contrib.messages import success
+# from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login, authenticate
-from django.contrib import messages
+
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
+from .forms import ProfileUpdateForm
+
+#profile views start
+from django.shortcuts import render
+from applications.apartment.models import Apartment
+@login_required
+def profile_view(request):
+    user_ads = Apartment.objects.filter(user=Apartment.owner_id)
+
+    # Передача списка объявлений в контекст шаблона
+    context = {'user_ads': user_ads}
+    if Apartment.owner_id.is_superuser:
+        return admin_profile_view(request,context)
+    else:
+        return user_profile_view(request,context)
+
+def admin_profile_view(request):
+    user = request.user
+    context = {
+        'user': user,
+        # дополнительные данные для администраторов
+    }
+    return render(request, 'apartmen/profile.html', context)
+
+def user_profile_view(request):
+    user = request.user
+    context = {
+        'user': user,
+        # дополнительные данные для обычных пользователей
+    }
+    return render(request, 'apartmen/profile.html', context)
+
+@login_required
+def profile_update_view(request):
+    user = request.user
+    if request.method == 'POST':
+        form = ProfileUpdateForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')  # Перенаправить на страницу профиля после обновления
+    else:
+        form = ProfileUpdateForm(instance=user)
+    context = {
+        'form': form
+    }
+    return render(request, 'apartmen/profile_update.html', context)
+
+
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
+        email = request.POST.get('email')
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
+        if password1 == password2:
+            # Создаем пользователя
+            user = User.objects.create_user(email=email, password=password1)
             login(request, user)
-            messages.success(request, f'Your account has been created! You are now logged in as {username}')
+            success(request, f'Your account has been created! You are now logged in as {email}')
             return redirect('home')
-    else:
-        form = UserCreationForm()
-    return render(request, 'apartmen/register.html', {'form': form})
+        else:
+            # Пароли не совпадают
+            # Здесь можно добавить обработку ошибки
+            pass
+
+    return render(request, 'apartmen/register.html')
 
 
 
