@@ -1,0 +1,29 @@
+<!-- templates/apartmen/profile_update.html -->
+
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обновление профиля</title>
+    <link rel="stylesheet" href="{% static 'apartment/css/profile_update.css' %}">
+</head>
+<body>
+<header>
+    <!-- Добавьте здесь заголовок, если необходимо -->
+</header>
+
+<main class="update-container">
+    <h2>Обновление профиля</h2>
+    <form method="post" class="update-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="update-button">Сохранить</button>
+    </form>
+    <div class="links">
+        <a href="{% url 'profile' %}" class="link">Назад к профилю</a>
+    </div>
+</main>
+
+</body>
+</html>

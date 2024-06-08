@@ -16,10 +16,25 @@
         {% csrf_token %}
         <label for="email">Email:</label><br>
         <input type="email" id="email" name="email" required><br>
+
         <label for="password">Пароль:</label><br>
         <input type="password" id="password" name="password" required><br>
+
         <label for="password_confirm">Подтверждение пароля:</label><br>
         <input type="password" id="password_confirm" name="password_confirm" required><br>
+
+        <label for="name">Имя:</label><br>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="surname">Фамилия:</label><br>
+        <input type="text" id="surname" name="surname" required><br>
+
+<!--        <label for="phone_number">Номер телефона:</label><br>-->
+<!--        <input type="text" id="phone_number" name="phone_number"><br>-->
+
+<!--        <label for="date_of_birth">Дата рождения:</label><br>-->
+<!--        <input type="date" id="date_of_birth" name="date_of_birth"><br>-->
+
         <button type="submit" class="register-button">Зарегистрироваться</button>
     </form>
     <div class="links">
@@ -30,4 +45,3 @@
 
 </body>
 </html>
-
